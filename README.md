@@ -80,7 +80,14 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > 
 > **해결:** TUSER 위치 FSM 정렬 후 정상 출력
 > ![image](progress/2025-04-08/picture/issue_top_stripe_pattern.png)
-
+>
+> 
+> 📅 [2025-04-09]  
+> **문제:** 영상 프레임이 과도하게 떨리는 증상
+> 
+> **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
+> ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
+> 
 
 ---
 
