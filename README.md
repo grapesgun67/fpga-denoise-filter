@@ -45,9 +45,11 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 
 ## ⚙️ 구현 흐름도
-[Block Diagram.pdf](https://github.com/user-attachments/files/21471468/Block.Diagram.pdf)
-
 ![image](docs/Block_Diagram.jpg)
+
+![image](docs/denoise_ip_block_diagram.png)
+
+[Block Diagram.pdf](https://github.com/user-attachments/files/21471468/Block.Diagram.pdf)
 
 
 ---
