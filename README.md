@@ -97,11 +97,33 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_2.png)
 > 
 > 
-> 📅 [2025-04-09]  
-> **문제:** 영상 프레임이 과도하게 떨리는 증상
+> 📅 [2025-05-19]  
+> **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
-> ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
+> - M_AXIS_TLAST, M_AXIS_TUSER 신호는 적합한 조건일 경우일 때만 출력하도록 적용
+> - 결국 VDMA와 DDR Memory를 연결하는 PS의 arbitrator(S_HP)를 추가
+> ![image](progress/2025-05-19/picture/data_alignment_error.png)  
+>
+> 
+> 📅 [2025-05-25]  
+> **문제:** FPGA 보드 내에서 사용 가능한 LUT를 초과한 설계로 인한 합성 불가 오류
+> 
+> **로그:**  "[DRC UTLZ-1] Resource utilization: LUT as Distributed RAM over-utilized in Top Level Design (This design requires more LUT as Distributed RAM cells than are available in the target device. This design requires 20734 of such cell types but only 17400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)"
+>
+> 
+> **해결:** Line Buffer 3줄을 라인별로 명시적 분리방법을 사용
+> - 수정 전 : (* ram_style = "block" ) reg [DATA_WIDTH-1:0] line_buffer [0:1920-1]
+> - 수정 후 : "(* ram_style = "block" ) reg [DATA_WIDTH-1:0] line0 [0:LINE_WIDTH-1]" x 3개 생성
+> 
+> 📅 [2025-05-19]  
+> **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형
+> 
+> **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
+> 
+> ![image](progress/2025-05-19/picture/data_alignment_error.png) 
+
+
 
 
 ---
