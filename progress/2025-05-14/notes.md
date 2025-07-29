@@ -1,5 +1,5 @@
 [2025-05-14]
-1. 영상 출력 문제 : 영상이 깨지는 문제
+1. 영상 출력 문제 : RGB 컬러값이 섞인 무의미한 영상 출력
 
 2. 원인 : HW 설계 내 AXI_BayerToRGB IP 에 대한 이해도 부족으로 VDMA 초기 셋팅 오류 발생
     1) 현재 설계는 AXI_BayerToRGB -> AXI_VDMA(write) -> AXI_VDMA(read) -> Denoise filter(custom ip)로 되어있음
