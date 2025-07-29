@@ -75,19 +75,34 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 ## 🖼️ 결과 이미지 및 디버깅 사진
 
-> 📅 [2025-04-08]  
+> 📅 [2025-04-08]
 > **문제:** 영상이 아래로 두 줄 밀려 출력됨
 > 
 > **해결:** TUSER 위치 FSM 정렬 후 정상 출력
 > ![image](progress/2025-04-08/picture/issue_top_stripe_pattern.png)
 >
 > 
+> 📅 [2025-04-09]
+> **문제:** 영상 프레임이 과도하게 떨리는 증상
+> 
+> **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
+> ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
+>
+> 
+> 📅 [2025-05-14]
+> **문제:** RGB 컬러값이 섞인 무의미한 영상 출력
+> 
+> **해결:** vitis에서 VDMA 초기화시에 HorisizeInput과 Stride를 7680(1920의 4배)로 설정
+> ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_1.png)
+> ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_2.png)
+> 
+> 
 > 📅 [2025-04-09]  
 > **문제:** 영상 프레임이 과도하게 떨리는 증상
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
 > ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
-> 
+
 
 ---
 
