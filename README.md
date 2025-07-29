@@ -136,6 +136,8 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > 
 > **해결:** 파악중
 > ![image](progress/2025-07-14/picture/median_denoise_filter_issue.jpg)
+>
+> 
 > 
 
 
