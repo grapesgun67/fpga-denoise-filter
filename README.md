@@ -83,9 +83,10 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 >
 > 
 > 📅 [2025-04-09]  
-> **문제:** 영상 프레임이 과도하게 떨리는 증상
+> **문제:** 영상 프레임이 과도하게 떨리거나 혹은 가로줄&세로줄 발생 증상
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
+> ![AXI_timing_issue](docs/AXI_timing_issue.gif)
 > ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
 >
 > 
@@ -115,15 +116,15 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > **해결:** Line Buffer 3줄을 라인별로 명시적 분리방법을 사용
 > - 수정 전 : (* ram_style = "block" ) reg [DATA_WIDTH-1:0] line_buffer [0:1920-1]
 > - 수정 후 : "(* ram_style = "block" ) reg [DATA_WIDTH-1:0] line0 [0:LINE_WIDTH-1]" x 3개 생성
+>
 > 
 > 📅 [2025-05-19]  
 > **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형
 > 
-> **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
-> 
-> ![image](progress/2025-05-19/picture/data_alignment_error.png) 
-
-
+> **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제>
+> ![Video_with_horizontal_and_vertical_artifacts](docs/Video_with_horizontal_and_vertical_artifacts.gif)
+> ㅇ
+> ㅇ
 
 
 ---
