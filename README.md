@@ -137,9 +137,22 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > **해결:** 파악중
 > ![image](progress/2025-07-14/picture/median_denoise_filter_issue.jpg)
 >
+>
+> 📅 [2025-08-10]  
+> **문제:** 영상에서 가로줄이 아래로 흐르는 이슈 존재
+>
+> **해결:**
+> - pixel_x, pixel_y, m_axis_tuser, m_axis_tlast 생성 조건 중 curr_state를 사용하는 사항 폐기
+> - 한 줄 내 픽셀이 채워지지 않거나 한 프레임이 채워지지 않은 상태에서 axi4-stream 신호를 출력함으로써 발생한 문제로 확인됨
+>
 > 
+> 📅 [2025-08-11]  
+> **문제:** Mean Filter(평균 필터)를 구현중에 칼라 노이즈가 오히려 더 증가하는 현상
+>
+> **해결:** 픽셀 단위가 아닌 한 픽셀 내 R, G, B 단위(10bit)로 mean filter 적용하도록 수정
+> ![image](docs/off_mean_filter.gif)
+> ![image](docs/on_mean_filter.gif)
 > 
-
 
 ---
 
@@ -166,3 +179,4 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
