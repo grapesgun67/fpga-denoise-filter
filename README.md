@@ -3,8 +3,6 @@
 본 프로젝트는 3x3 윈도우 기반 영상 노이즈 제거 필터를 Verilog로 설계하고,
 Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
-
-
 ---
 
 
@@ -81,14 +79,14 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 ## 🖼️ 결과 이미지 및 디버깅 사진
 
-> 📅 [2025-04-08]  
+> ## 📅 [2025-04-08]  
 > **문제:** 영상이 아래로 두 줄 밀려 출력됨
 > 
 > **해결:** TUSER 위치 FSM 정렬 후 정상 출력
 > ![image](progress/2025-04-08/picture/issue_top_stripe_pattern.png)
 >
 > 
-> 📅 [2025-04-09]  
+> ## 📅 [2025-04-09]  
 > **문제:** 영상 프레임이 과도하게 떨리거나 혹은 가로줄&세로줄 발생 증상
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
@@ -96,7 +94,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![Excessive Video Shaking](docs/Excessive_Video_Shaking.gif)
 >
 > 
-> 📅 [2025-05-14]  
+> ## 📅 [2025-05-14]  
 > **문제:** RGB 컬러값이 섞인 무의미한 영상 출력
 > 
 > **해결:** vitis에서 VDMA 초기화시에 HorisizeInput과 Stride를 7680(1920의 4배)로 설정
@@ -104,7 +102,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_2.png)
 > 
 > 
-> 📅 [2025-05-19]  
+> ## 📅 [2025-05-19]  
 > **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
@@ -113,7 +111,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![image](progress/2025-05-19/picture/data_alignment_error.png)  
 >
 > 
-> 📅 [2025-05-25]  
+> ## 📅 [2025-05-25]  
 > **문제:** FPGA 보드 내에서 사용 가능한 LUT를 초과한 설계로 인한 합성 불가 오류
 > 
 > **로그:**  "[DRC UTLZ-1] Resource utilization: LUT as Distributed RAM over-utilized in Top Level Design (This design requires more LUT as Distributed RAM cells than are available in the target device. This design requires 20734 of such cell types but only 17400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)"
@@ -124,7 +122,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > - 수정 후 : "(* ram_style = "block" ) reg [DATA_WIDTH-1:0] line0 [0:LINE_WIDTH-1]" x 3개 생성
 >
 > 
-> 📅 [2025-07-06]  
+> ## 📅 [2025-07-06]  
 > **문제:** 영상에서 가로줄 및 세로줄이 이동 현상 발생
 > - s_curr_tvalid를 받지 못한 상태에서 m_axis_tuser가 미리 출력되는 경우
 > - denoise ip 앞단이나 뒷단에서 tready & valid가 유효하지 않은 상황에서 tuser를 출력하는 상황
@@ -136,7 +134,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![Video_with_horizontal_and_vertical_artifacts](docs/Video_with_horizontal_and_vertical_artifacts.gif)
 > 
 > 
-> 📅 [2025-07-14]  
+> ## 📅 [2025-07-14]  
 > **문제:** Mean Filter(평균 필터)를 구현중에 칼라 노이즈가 오히려 더 증가하는 현상
 >
 > 
@@ -144,25 +142,24 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ![image](progress/2025-07-14/picture/median_denoise_filter_issue.jpg)
 >
 >
-> 📅 [2025-08-10]  
+> ## 📅 [2025-08-10]  
 > **문제:** 영상에서 가로줄이 아래로 흐르는 이슈 존재
 >
-> **해결:**
-> - pixel_x, pixel_y, m_axis_tuser, m_axis_tlast 생성 조건 중 curr_state를 사용하는 사항 폐기
+> **해결:** pixel_x, pixel_y, m_axis_tuser, m_axis_tlast 생성 조건 중 curr_state를 사용하는 사항 폐기
 > - 한 줄 내 픽셀이 채워지지 않거나 한 프레임이 채워지지 않은 상태에서 axi4-stream 신호를 출력함으로써 발생한 문제로 확인됨
 >
 > 
-> 📅 [2025-08-11]  
+> ## 📅 [2025-08-11]  
 > **문제:** Mean Filter(평균 필터)를 구현중에 칼라 노이즈가 오히려 더 증가하는 현상
 >
 > **해결:** 픽셀 단위가 아닌 한 픽셀 내 R, G, B 단위(10bit)로 mean filter 적용하도록 수정
 >
 > 
-> (off_mean_filter)
+> (mean_filter off 경우)
 > ![image](docs/off_mean_filter.gif)
 >
 > 
-> (on_mean_filter)
+> (mean_filter on 경우)
 > ![image](docs/on_mean_filter.gif)
 >
 > 
@@ -192,6 +189,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
