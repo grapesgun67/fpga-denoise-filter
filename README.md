@@ -4,6 +4,7 @@
 Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 
+
 ---
 
 
@@ -16,6 +17,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 - Custom HW IP 설계 및 디버깅
 
 
+
 ---
 
 
@@ -24,6 +26,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 - **실시간 영상 필터링**을 위한 **커스텀 HW IP**를 직접 설계
 - AXI4-Stream 프로토콜을 이용해 **VDMA ↔ HW IP ↔ HDMI 출력** 파이프라인 구성
 - **FSM과 파이프라인 설계**를 통해 타이밍 정합 및 출력 정합성 확보
+
 
 
 ---
@@ -41,6 +44,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
   - FSM 기반 동기화
 
 
+
 ---
 
 
@@ -48,6 +52,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ![image](docs/denoise_ip_block_diagram.png)
 ![image](docs/Block_Diagram.jpg)
 [Block Diagram.pdf](https://github.com/user-attachments/files/21471468/Block.Diagram.pdf)
+
 
 ---
 
@@ -68,6 +73,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 > 이러한 문제 해결 과정을 통해 실제 SoC 파이프라인 설계에서 필요한
 > **시퀀셜 타이밍, 핸드쉐이크 흐름 제어, FSM 상태관리**에 대한 깊은 이해
+
 
 
 ---
@@ -186,6 +192,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
