@@ -1,7 +1,7 @@
 # 🚀 FPGA 기반 노이즈 제거 필터 IP 설계 프로젝트
 
-본 프로젝트는 3x3 윈도우 기반 영상 노이즈 제거 필터를 Verilog로 설계하고,
-Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
+`본 프로젝트는 3x3 윈도우 기반 영상 노이즈 제거 필터를 Verilog로 설계하고,
+Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현`
 
 ---
 
@@ -12,7 +12,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 - AXI4-Stream 프로토콜
 - Zynq-7000 (Zybo Z7-20)
 - ILA, VDMA, FSM, 파이프라인 처리 기법
-- Custom HW IP 설계 및 디버깅
+- `Custom HW IP 설계 및 디버깅`
 
 
 
@@ -33,9 +33,9 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 주요 기능 및 설계 개요
 
 - 입력: 1920x1080, 30fps RGB 스트림
-- 처리: 3x3 평균 기반 노이즈 제거
+- `처리: 3x3 평균 기반 노이즈 제거`
 - 출력: HDMI (VDMA Read → Video Out)
-- 주요 처리 방식:
+- `주요 처리 방식:`
   - Line Buffer (3줄)
   - Valid & Ready 핸드쉐이크 제어
   - TLAST / TUSER 처리
@@ -189,6 +189,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
