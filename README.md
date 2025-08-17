@@ -103,11 +103,11 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > 
 > 
 > ## 📅 [2025-05-19]  
-> **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형
+> **문제:** 프레임 내 픽셀이 뭉쳐서 중간중간에 작은 스트라이프 패턴 형성
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
 > - M_AXIS_TLAST, M_AXIS_TUSER 신호는 적합한 조건일 경우일 때만 출력하도록 적용
-> - 또한 VDMA와 DDR Memory를 연결하는 PS의 arbitrator(S_HP)를 추가하여 적합한 bandwidth 확보보
+> - 또한 VDMA와 DDR Memory를 연결하는 PS의 arbitrator(S_HP)를 추가하여 적합한 bandwidth 확보
 > ![image](progress/2025-05-19/picture/data_alignment_error.png)  
 >
 > 
@@ -226,6 +226,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
