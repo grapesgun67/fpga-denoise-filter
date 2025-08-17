@@ -167,6 +167,42 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 ---
 
+## 📊 품질 측정
+> ### PSNR (Peak Signal-to-Noise Ratio)
+> 
+> 영상 필터 성능 비교를 위해 사용되는 대표적인 정량적 화질 지표
+> 
+> $$
+> PSNR = 10 \cdot \log_{10} \left( \frac{MAX_I^2}{MSE} \right)
+> $$
+> 
+> $$
+> MSE = \frac{1}{mn} \sum_{i=1}^{m} \sum_{j=1}^{n} ( I(i,j) - K(i,j) )^2
+> $$
+> 
+> 
+> - \( MAX_I \) : 픽셀 최대값 (예: 8bit 영상 → 255)
+> - \( I \) : 원본 (Dirty) 이미지
+> - \( K \) : 필터 적용 (Filtered) 이미지
+> - \( m \times n \) : 이미지 해상도 (픽셀 수)
+> 
+> PSNR 값이 클수록 필터링 결과가 원본에 가까워짐을 의미하며
+> 일반적으로 **30dB 이상이면 좋은 복원 품질**, **40dB 이상이면 거의 원본 수준**으로 간주
+>
+> 측정 코드 : [`visualize_psnr.py`](quality_metric/visualize_psnr.py)
+> 
+> ## 📅 [2025-08-17]  
+> **품질:** PSNR 16이며, Denoise 영향도가 낮다고 볼 수 있음
+> 
+> **해결:** Line Buffer 3줄을 라인별로 명시적 분리방법을 사용
+> - Line Buffer 개수 늘리기
+> - mean filter가 아닌 다른 filter 적용해보기
+>
+> ![image](quality_metric/psnr_20250817.png)
+>
+> 
+
+---
 
 ## 📁 자료
 
@@ -190,6 +226,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
