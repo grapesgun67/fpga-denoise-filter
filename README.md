@@ -58,7 +58,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 🧠 개발 중 해결한 문제와 기술적 인사이트
 
 ### 📍 문제1: TLAST/TUSER 스트라이프 발생  
-- **원인:** 파이프라인 처리 시 TUSER 위치가 frame 시작점과 mismatch  
+- **원인:** 영상 파이프라인 처리 시 TUSER 위치가 frame 시작점과 mismatch  
 - **해결:** FSM과 `pixel_x/pixel_y` 카운터, 타이밍 딜레이 파이프라인 적용
 
 ### 📍 문제2: VDMA circular mode에서 sync mismatch  
@@ -80,7 +80,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 🖼️ 결과 이미지 및 디버깅 사진
 
 > ## 📅 [2025-04-08]  
-> **문제:** 영상이 아래로 두 줄 밀려 출력됨
+> **문제:** 영상에 스트라이프 패턴 발생
 > 
 > **해결:** TUSER 위치 FSM 정렬 후 정상 출력
 > ![image](progress/2025-04-08/picture/issue_top_stripe_pattern.png)
@@ -97,7 +97,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > ## 📅 [2025-05-14]  
 > **문제:** RGB 컬러값이 섞인 무의미한 영상 출력
 > 
-> **해결:** vitis에서 VDMA 초기화시에 HorisizeInput과 Stride를 7680(1920의 4배)로 설정
+> **해결:** Vitis에서 VDMA 초기화시에 HorisizeInput과 Stride를 7680(1920의 4배)로 설정
 > ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_1.png)
 > ![image](progress/2025-05-14/picture/meaningless_mixed_color_formats_2.png)
 > 
@@ -107,7 +107,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > 
 > **해결:** TUSER와 TLAST 신호를 AXI HandShake 기준에 맞추지 않고 출력하여 발생한 문제
 > - M_AXIS_TLAST, M_AXIS_TUSER 신호는 적합한 조건일 경우일 때만 출력하도록 적용
-> - 결국 VDMA와 DDR Memory를 연결하는 PS의 arbitrator(S_HP)를 추가
+> - 또한 VDMA와 DDR Memory를 연결하는 PS의 arbitrator(S_HP)를 추가하여 적합한 bandwidth 확보보
 > ![image](progress/2025-05-19/picture/data_alignment_error.png)  
 >
 > 
@@ -147,6 +147,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 >
 > **해결:** pixel_x, pixel_y, m_axis_tuser, m_axis_tlast 생성 조건 중 curr_state를 사용하는 사항 폐기
 > - 한 줄 내 픽셀이 채워지지 않거나 한 프레임이 채워지지 않은 상태에서 axi4-stream 신호를 출력함으로써 발생한 문제로 확인됨
+> - 즉 기존 curr_state 조건에 의해서 FSM(IDLE, CALC) 상태에 따라 출력이 끊기는 현상이 발생한 것
 >
 > 
 > ## 📅 [2025-08-11]  
@@ -189,6 +190,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
