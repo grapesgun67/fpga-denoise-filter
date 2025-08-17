@@ -196,7 +196,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 > 
 > **해결:**
 > - Line Buffer 개수 늘리기
-> - `mean filter가 아닌 다른 filter 적용해보기
+> - mean filter가 아닌 다른 filter 적용해보기
 >
 > ![image](quality_metric/psnr_20250817.png)
 >
@@ -226,6 +226,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ## 📌 GitHub Pages 문서 바로가기
 
 👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
+
 
 
 
