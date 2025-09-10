@@ -223,9 +223,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 ---
 
 
-## 📌 GitHub Pages 문서 바로가기
 
-👉 [프로젝트 정리 웹페이지 보기](https://username.github.io/denoise_fpga_project)
 
 
 
