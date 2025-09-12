@@ -61,13 +61,19 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 - **원인:** 영상 파이프라인 처리 시 TUSER 위치가 frame 시작점과 mismatch  
 - **해결:** FSM과 `pixel_x/pixel_y` 카운터, 타이밍 딜레이 파이프라인 적용
 
-### 📍 문제2: VDMA circular mode에서 sync mismatch  
-- **원인:** MM2S interrupt 미발생으로 TUSER generation 실패  
-- **해결:** MM2S interrupt 기반 FSM 설계 후, 정확한 frame 시작점 맞춤
-
-### 📍 문제3: Verilog 핸드쉐이크 타이밍 위반  
+### 📍 문제2: Verilog 핸드쉐이크 타이밍 위반  
 - **원인:** m_axis_tready에 따른 tvalid 제어 미흡  
 - **해결:** `(!m_axis_tvalid || m_axis_tready)` 논리 적용으로 AXI4-Stream 준수
+
+### 📍 문제3: Total setup time violation 발생
+- **원인:** 한 클럭 내 필터 연산이 완료되지 않아 200ms 지연과 함께 영상이 버벅이는 문제 발생  
+- **해결:** 1-stage 연산 방식을 3-stage 파이프라인 구조로 변경하여 100ms 지연으로 낮추면서 영상 정상 출력
+
+### 📍 문제4: FPGA 합성시 LUT 메모리 개수 초과 발생  
+- **원인:** 필터 연산시 사용하는 3x3 라인버퍼를 1개 배열에 모두 선언한 문제  
+- **해결:** 라인 버퍼를 1개에서 3개로 분리해서 선언하여 BRAM이 명확히 대응되도록 개선
+
+
 
 > 이러한 문제 해결 과정을 통해 실제 SoC 파이프라인 설계에서 필요한
 > **시퀀셜 타이밍, 핸드쉐이크 흐름 제어, FSM 상태관리**에 대한 깊은 이해
@@ -221,6 +227,7 @@ Zynq 기반 보드에서 실시간 영상 스트리밍 파이프라인을 구현
 
 
 ---
+
 
 
 
